@@ -29,8 +29,7 @@
            ))]))
 
 (define cor1
-  (coro
-   (x)
+  (coro (x)
    (let loop ((i 1))
      (yield i)
      (loop (+ i 1)))))
