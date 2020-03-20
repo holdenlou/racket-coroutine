@@ -1,4 +1,5 @@
 #lang racket
+
 (require (for-syntax syntax/parse racket/syntax racket/format racket/base))
 (define (current-continuation)
   (call/cc (lambda (cc) cc )))
@@ -13,7 +14,7 @@
                   (yield (λ (v) (call/cc (λ (k)
                                            (set! internal-state k)
                                            (return-addr v))))))
-           (λ (arg)
+           (λ ([arg #f])
              (let ((ret (current-continuation)))
                (if (continuation? ret)
                    (begin
@@ -32,9 +33,9 @@
    (x)
    (let loop ((i 1))
      (yield i)
-     (loop (+ i 1)))));this is a coroutine
+     (loop (+ i 1)))))
 (define (test)
-(displayln (cor1 #f))
-(displayln (cor1 #f))
-(displayln (cor1 #f))
+(displayln (cor1))
+(displayln (cor1 #f));optinal argument
+(displayln (cor1))
 )
