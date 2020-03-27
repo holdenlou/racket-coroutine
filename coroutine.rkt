@@ -1,6 +1,7 @@
 #lang racket
-
 (require (for-syntax syntax/parse racket/syntax racket/format racket/base))
+(provide coro)
+
 (define (current-continuation)
   (call/cc (lambda (cc) cc )))
 (define-syntax (coro stx)
