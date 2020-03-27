@@ -7,7 +7,7 @@
 (define-syntax (coro stx)
   (syntax-parse stx
     [(coro (arg) body ... )
-     (with-syntax ((yield (format-id #'coro "~a" "yield")))
+     (with-syntax ((yield (format-id #'arg "~a" "yield")))
        #'(letrec (
                   (func (λ (arg) body ...))
                   (internal-state 'init)
